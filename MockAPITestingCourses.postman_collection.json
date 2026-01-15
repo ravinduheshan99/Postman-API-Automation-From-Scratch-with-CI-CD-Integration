@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "383f591f-19e8-47d9-bce0-a97d1f7f9970",
+		"name": "MockAPITestingCourses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32184760"
+	},
+	"item": [
+		{
+			"name": "getapitestingcourses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"jsonData.data.forEach(function(item){\r",
+							"    if(item.category == \"Performance\")\r",
+							"    {\r",
+							"        pm.environment.set(\"course\",item.course);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getapitestingcourses",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getapitestingcourses"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://2c856dee-4fa2-403f-a4be-ab85abe5b01f.mock.pstmn.io/getapitestingcourses",
+							"protocol": "https",
+							"host": [
+								"2c856dee-4fa2-403f-a4be-ab85abe5b01f",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"getapitestingcourses"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n  \"data\": [\n    {\n      \"course\": \"Postman\",\n      \"price\":200,\n      \"category\": \"API\"\n    },\n    {\n      \"course\": \"Selenium\",\n      \"price\":300,\n      \"category\": \"Automation\"\n    },\n    {\n      \"course\": \"Rest Assured\",\n      \"price\":400,\n      \"category\": \"API\"\n    },\n    {\n      \"course\": \"JMeter\",\n      \"price\":500,\n      \"category\": \"Performance\"\n    }\n  ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GetCourseDetails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('validation student count', () => {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.students>10000).to.be.true;\r",
+							"    pm.expect(jsonData.course).to.eql(\"Performance\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getcoursedetails?name={{course}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getcoursedetails"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{course}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://2c856dee-4fa2-403f-a4be-ab85abe5b01f.mock.pstmn.io/",
+							"protocol": "https",
+							"host": [
+								"2c856dee-4fa2-403f-a4be-ab85abe5b01f",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Postman Query Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getcoursedetails?name=Postman",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getcoursedetails"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Postman"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n\"name\": \"Postman\",\r\n\"course\": \"Javascript\",\r\n\"content\": \"Videos\",\r\n\"length\":\"15 hours\",\r\n\"students\": \"12342\"\r\n}"
+				},
+				{
+					"name": "Rest Assured Query Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getcoursedetails?name=RestAssured",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getcoursedetails"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "RestAssured"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"RestAssured\",\n    \"course\": \"Java\",\n    \"content\": \"Videos\",\n    \"length\": \"20 hours\",\n    \"students\": \"20342\"\n}"
+				},
+				{
+					"name": "JMeter Query Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getcoursedetails?name=JMeter",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getcoursedetails"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "JMeter"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"JMeter\",\n    \"course\": \"Performance\",\n    \"content\": \"Videos\",\n    \"length\": \"30 hours\",\n    \"students\": \"30342\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://2c856dee-4fa2-403f-a4be-ab85abe5b01f.mock.pstmn.io"
+		}
+	]
+}
